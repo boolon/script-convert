@@ -1,5 +1,7 @@
+import os
+
 def convert(filename, target = "output.txt"):
-    with open(filename) as file:
+    with open(filename,"r") as file:
         data = file.read(split = "\n")
     result = ""
     i = 0
@@ -38,8 +40,11 @@ def convert(filename, target = "output.txt"):
             result+="TEL;TYPE=WORK,PREF:"+tel + "\n"
         result+="EMAIL;TYPE=INTERNET;TYPE=HOME;TYPE=PREF:"+mail + "\n"
         result+="END:VCARD"
-    with open(target) as file_tgt:
+    with open(target,"w") as file_tgt:
         file_tgt.write(result)
     print(result)
 
+def test():
+    convert(os.path.join("Exemple","exemple.txt"),os.path.join("Exemple","output.txt"))
 convert(str(input()))
+#test()
