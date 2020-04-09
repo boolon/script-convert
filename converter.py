@@ -55,8 +55,24 @@ def test():
     convert(os.path.join("Exemple","exemple.txt"),os.path.join("Exemple","output.txt"))
 
 
-#if name == "__main__":
-#    options, remainder = getopt.getopt(sys.argv[1:],
+if __name__ == "__main__":
+    options, remainder = getopt.getopt(sys.argv[1:], "ti:o:",[])
+    test_mode = False
+    inp = None
+    outp = None
+    for opt, arg in options:
+        if opt in ("-t"):
+            test_mode = True
+        elif opt in ("-i"):
+            inp = arg
+        elif opt in ("-o"):
+            outp = arg
 
-convert(str(input()))
-# test()
+    if test_mode:
+        test()
+    else:
+        if inp==None:
+            inp = input("Entrez le nom du fichier à corvertir :")
+        if outp == None:
+            output = "output.vcs"
+        convert(input, output)
