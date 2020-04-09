@@ -38,7 +38,12 @@ def convert(filename, target = "output.txt"):
                 i+=1
             if data[i].startswith("CATEGORIES"):
                 i+=1
-            assert data[i].startswith("END:VCARD"),data[i0:i]
+            note_bool = False
+            while not data[i].startswith("END:VCARD"):
+                if data[i].startswith("NOTE:"):
+                    note = data[i]
+                    note_bool = True
+                i+=1
             result+="PROFILE:VCARD\n"
             result+=fullname + "\n"
             result+="N:;;;;\n"
@@ -46,6 +51,8 @@ def convert(filename, target = "output.txt"):
             if tel_bool:
                 result+="TEL;TYPE=WORK,PREF:"+tel + "\n"
             result+="EMAIL;TYPE=INTERNET;TYPE=HOME;TYPE=PREF:"+mail + "\n"
+            if note_bool:
+                result+=note + "\n"
             result+="END:VCARD\n"
             result+="\n"
     with open(target,"w") as file_tgt:
