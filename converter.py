@@ -14,6 +14,7 @@ def convert(filename, target = "output.txt"):
         while i<len(data) and data[i]!="BEGIN:VCARD":
             i+=1
         if i!=len(data):
+            i0 = i
             result+="BEGIN:VCARD\n"
             i+=1
             assert data[i]=="VERSION:3.0"
@@ -37,7 +38,7 @@ def convert(filename, target = "output.txt"):
                 i+=1
             if data[i].startswith("CATEGORIES"):
                 i+=1
-            assert data[i].startswith("END:VCARD")
+            assert data[i].startswith("END:VCARD"),data[i0:i]
             result+="PROFILE:VCARD\n"
             result+=fullname + "\n"
             result+="N:;;;;\n"
