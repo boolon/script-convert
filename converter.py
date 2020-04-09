@@ -1,4 +1,7 @@
 import os
+import sys
+import getopt
+
 
 def convert(filename, target = "output.txt"):
     with open(filename,"r") as file:
@@ -32,8 +35,8 @@ def convert(filename, target = "output.txt"):
                 tel = data[i][j+1:]
                 tel_bool = True
                 i+=1
-            assert data[i].startswith("CATEGORIES")
-            i+=1
+            if data[i].startswith("CATEGORIES"):
+                i+=1
             assert data[i].startswith("END:VCARD")
             result+="PROFILE:VCARD\n"
             result+=fullname + "\n"
@@ -50,5 +53,10 @@ def convert(filename, target = "output.txt"):
 
 def test():
     convert(os.path.join("Exemple","exemple.txt"),os.path.join("Exemple","output.txt"))
-#convert(str(input()))
-test()
+
+
+#if name == "__main__":
+#    options, remainder = getopt.getopt(sys.argv[1:],
+
+convert(str(input()))
+# test()
