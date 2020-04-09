@@ -44,6 +44,9 @@ def convert(filename, target = "output.txt"):
                     note = data[i]
                     note_bool = True
                 i+=1
+                if i==len(data[i]):
+                    assert False, "Unmatched"
+                
             result+="PROFILE:VCARD\n"
             result+=fullname + "\n"
             result+="N:;;;;\n"
@@ -82,5 +85,5 @@ if __name__ == "__main__":
         if inp==None:
             inp = input("Entrez le nom du fichier à corvertir :")
         if outp == None:
-            output = "output.vcs"
+            outp = "output.vcs"
         convert(inp, outp)
