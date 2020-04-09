@@ -75,4 +75,4 @@ if __name__ == "__main__":
             inp = input("Entrez le nom du fichier à corvertir :")
         if outp == None:
             output = "output.vcs"
-        convert(input, output)
+        convert(inp, outp)
